@@ -1,0 +1,22 @@
+name: deploy app
+
+on: workflow_dispatch
+    
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: run_docker
+      environment: prd
+      env:
+        DOCKER_USER: matarjalal
+        DOCKER_IMAGE: ghcr.io/matarjalal/app
+        DOCKER_CONTAINER: jekyll_artifact
+        MY_SECRET_KEY: ${{ secrets.ENCRYPTED_SSH_KEY }}
+      run: |
+      eval $(ssh-agent -s)
+      ssh-add - <<< "${MY_SECRET_KEY}"
+      ssh -o StrictHostKeyChecking=no blue@blue.pdm.ovh docker pull ghcr.io/${{env.DOCKER_USER}}/${{env.DOCKER_IMAGE}}:latest
+      ssh -o StrictHostKeyChecking=no blue@blue.pdm.ovh docker stop ${{env.DOCKER_CONTAINER}} || true
+      ssh -o StrictHostKeyChecking=no blue@blue.pdm.ovh docker run --rm -dti -p 80:80 --name ${{env.DOCKER_CONTAINER}} ghcr.io/${{env.DOCKER_USER}}/${{env.DOCKER_IMAGE}}:latest
