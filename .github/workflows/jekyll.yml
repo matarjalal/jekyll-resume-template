@@ -37,8 +37,6 @@ jobs:
         with:
           name: jekyll_artifact
           path: ${{ github.workspace }}/
-      - name: Unzip artifact
-        run: unzip jekyll_artifact
       - name: login to Github 
         uses: docker/login-action@v1 
         with:
