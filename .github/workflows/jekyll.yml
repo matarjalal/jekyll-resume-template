@@ -36,7 +36,7 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: jekyll_artifact
-          path: ${{ github.workspace }}/
+          path: ${{ github.workspace }}/jekyll_artifact
       - name: login to Github 
         uses: docker/login-action@v1 
         with:
