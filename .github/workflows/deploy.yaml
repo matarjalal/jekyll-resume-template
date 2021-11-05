@@ -11,7 +11,7 @@ jobs:
     - name: run_docker
       env:
         DOCKER_USER: matarjalal
-        DOCKER_IMAGE: ghcr.io/matarjalal/app
+        DOCKER_IMAGE: app
         DOCKER_CONTAINER: jekyll_artifact
         MY_SECRET_KEY: ${{ secrets.ENCRYPTED_SSH_KEY }}
       run: |
