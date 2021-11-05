@@ -50,9 +50,9 @@ jobs:
           platforms: linux/amd64
           push: true
           tags: |
-            user/app:latest
-            user/app:1.0.0
-            ghcr.io/user/app:latest
-            ghcr.io/user/app:1.0.0
+            mataljalal/app:latest
+            mataljalal/app:1.0.0
+            ghcr.io/mataljalal/app:latest
+            ghcr.io/mataljalal/app:1.0.0
 
 
