@@ -64,7 +64,7 @@ jobs:
         with:
           name: jekyll_artifact
           path: ${{ github.workspace }}/jekyll_artifact
-      - run: tar -xzf jekyll_artifact ${{ github.workspace }}/jekyll_artifact
+      - run: tar -czf jekyll_artifact.tar.gz ${{ github.workspace }}/jekyll_artifact
       - name: Release
         uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/')
