@@ -3,6 +3,8 @@ name: Jekyll site CI
 on:
   push:
     branches: [ main ]
+    tags:
+      - "*"
   pull_request:
     branches: [ main ]
 
@@ -52,5 +54,23 @@ jobs:
           tags: |
             ghcr.io/matarjalal/app:latest
             ghcr.io/matarjalal/app:1.0.0
+  Release:
+    runs-on: ubuntu-latest
+    needs:
+    - build
+    steps:
+      - name: download artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: jekyll_artifact
+          path: ${{ github.workspace }}/jekyll_artifact
+      - run: tar -xzf jekyll_artifact ${{ github.workspace }}/jekyll_artifact
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        if: startsWith(github.ref, 'refs/tags/')
+        with:
+          files: jekyll_artifact.tar.gz
+        
+  
 
 
