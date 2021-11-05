@@ -50,9 +50,7 @@ jobs:
           platforms: linux/amd64
           push: true
           tags: |
-            mataljalal/app:latest
-            mataljalal/app:1.0.0
-            ghcr.io/mataljalal/app:latest
-            ghcr.io/mataljalal/app:1.0.0
+            ghcr.io/matarjalal/app:latest
+            ghcr.io/matarjalal/app:1.0.0
 
 
